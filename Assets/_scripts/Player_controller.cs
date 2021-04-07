@@ -2,31 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_controller : MonoBehaviour
-{
+public class Player_controller : MonoBehaviour{
     Rigidbody2D rb;
     Animator anim;
 
     float horizontalMove = 0f;
     float verticalMove = 0f;
 
+    public Weapon_Controller weapon;
+
     float MvSpeed = 5f;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         horizontalMove = Input.GetAxisRaw("Horizontal");
         verticalMove = Input.GetAxisRaw("Vertical");
 
-        if (horizontalMove > 0.1 || horizontalMove < -0.1 || verticalMove > 0.1 || verticalMove < -0.1) anim.SetBool("walking", true);
-        else anim.SetBool("walking", false);
+        if (horizontalMove > 0.1 || horizontalMove < -0.1 || verticalMove > 0.1 || verticalMove < -0.1) {
+            anim.SetBool("walking", true);
+            weapon.mv = true;
+        }
+        else {
+            anim.SetBool("walking", false);
+            weapon.mv = false;
+        }
+    
     }
 
     void FixedUpdate(){
@@ -44,4 +50,5 @@ public class Player_controller : MonoBehaviour
 
         rb.velocity = new Vector2(horizontalMove, verticalMove).normalized * MvSpeed;
     }
+
 }

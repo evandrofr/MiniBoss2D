@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player_controller : MonoBehaviour{
+    
     Rigidbody2D rb;
     Animator anim;
 
@@ -13,10 +15,15 @@ public class Player_controller : MonoBehaviour{
 
     float MvSpeed = 5f;
 
+
+    public int maxHealth = 100;
+    int currentHealth;
+
     // Start is called before the first frame update
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -51,4 +58,34 @@ public class Player_controller : MonoBehaviour{
         rb.velocity = new Vector2(horizontalMove, verticalMove).normalized * MvSpeed;
     }
 
+    public void TakeDamage(int dmg){
+        anim.SetTrigger("dmg");
+        currentHealth -= dmg;
+        Debug.Log("Health " + currentHealth);
+        if(currentHealth <= 0){
+            Die();
+        }
+    }
+
+    void Die(){
+        rb.velocity = Vector2.zero;
+        anim.SetTrigger("die");
+        SceneManager.LoadScene("gameover");
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+        if (other.tag == "drop"){
+
+            weapon_stats weaponStats = other.GetComponent<weapon_stats>();
+            
+            weapon.weaponDamege = weaponStats.dmg;
+            weapon.attackRate = weaponStats.attackRate;
+            weapon.sprite.sprite = weaponStats.sprite;
+
+            Destroy(other.gameObject);
+
+
+        }
+    }
 }

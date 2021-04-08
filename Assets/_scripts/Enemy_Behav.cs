@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class Skelleron_Behav : MonoBehaviour{
+public class Enemy_Behav : MonoBehaviour{
 
     Animator anim;
     Rigidbody2D rb;
+
+    drop_behav drop;
 
     public float agroRadius = 10f;
     public float MeleeRadius = 2f;
     public Transform center;
 
+    [SerializeField]
+    float waitTime = 0f;
+
     [SerializeField] float atk_rate = 0.5f;
     float next_atk = 0f;
-
 
     public Transform target;
 
@@ -28,11 +32,17 @@ public class Skelleron_Behav : MonoBehaviour{
     public int maxHealth = 100;
     int currentHealth;
 
+    public LayerMask PlayerLayer;
+
+    [SerializeField]
+    int attackDamage = 40;
+
     // Start is called before the first frame update
     void Start(){
         currentHealth = maxHealth; 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        drop = GetComponent<drop_behav>();
 
     }
 
@@ -62,7 +72,7 @@ public class Skelleron_Behav : MonoBehaviour{
 
     void Move_to_Player(){
         anim.SetBool("mv", true);
-        rb.velocity = (target.position - center.position).normalized * mvSpeed;
+        rb.velocity = (Vector2) (target.position - center.position).normalized * mvSpeed;
 
         if (rb.velocity.x < -0.2f) transform.eulerAngles = new Vector3(0f, 180f, 0f);
         if (rb.velocity.x > 0.2f) transform.eulerAngles = new Vector3(0f, 0f, 0f);
@@ -72,8 +82,20 @@ public class Skelleron_Behav : MonoBehaviour{
         atking = true;
         rb.velocity = Vector2.zero;
         anim.SetTrigger("atk");
-        yield return new WaitForSeconds(1.15f);
         atking = false;
+
+        yield return new WaitForSeconds(waitTime/2);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(center.position, MeleeRadius, PlayerLayer);
+
+        foreach (Collider2D enemy in hitEnemies){
+
+            Debug.Log("Hit " + enemy.name);
+            if (enemy.tag == "Player"){ 
+                enemy.GetComponent<Player_controller>().TakeDamage(attackDamage);
+            }
+        
+        }
+        yield return new WaitForSeconds(waitTime/2);
     }
 
     public void TakeDamage(int dmg){
@@ -85,10 +107,12 @@ public class Skelleron_Behav : MonoBehaviour{
     }
 
     void Die(){
-        GetComponent<Collider2D>().enabled = false;
-        Debug.Log("Enemy dies!");
+        rb.velocity = Vector2.zero;
         anim.SetTrigger("die");
-        GetComponent<Skelleron_Behav>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Enemy_Behav>().enabled = false;
+        drop.Drop();
+        Destroy(this.gameObject, 2f);
     }
 
 

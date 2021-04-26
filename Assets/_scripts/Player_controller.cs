@@ -15,15 +15,19 @@ public class Player_controller : MonoBehaviour{
 
     float MvSpeed = 5f;
 
-
     public int maxHealth = 100;
     int currentHealth;
+
+    public health_bar_behav health_Bar;
+
 
     // Start is called before the first frame update
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
+        health_Bar.SetMaxHealth(currentHealth);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -61,14 +65,14 @@ public class Player_controller : MonoBehaviour{
     public void TakeDamage(int dmg){
         anim.SetTrigger("dmg");
         currentHealth -= dmg;
-        Debug.Log("Health " + currentHealth);
+        health_Bar.SetHealth(currentHealth);
         if(currentHealth <= 0){
             Die();
         }
     }
 
     void Die(){
-        rb.velocity = Vector2.zero;
+        // rb.velocity = Vector2.zero;
         anim.SetTrigger("die");
         SceneManager.LoadScene("gameover");
     }
@@ -82,6 +86,9 @@ public class Player_controller : MonoBehaviour{
             weapon.weaponDamege = weaponStats.dmg;
             weapon.attackRate = weaponStats.attackRate;
             weapon.sprite.sprite = weaponStats.sprite;
+
+
+            weapon.attackSFX = weaponStats.attackSFX;
 
             Destroy(other.gameObject);
 

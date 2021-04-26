@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 5679879842431284126, guid: 77d75c6e7d32c8046b11252e18077d88,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,6 +119,7 @@ MonoBehaviour:
   dmg: 35
   attackRate: 2.5
   sprite: {fileID: 5679879842431284126, guid: 77d75c6e7d32c8046b11252e18077d88, type: 3}
+  attackSFX: {fileID: 8300000, guid: 24c99058e8bb2d14284677807253a2a6, type: 3}
 --- !u!61 &1572692525031427674
 BoxCollider2D:
   m_ObjectHideFlags: 0

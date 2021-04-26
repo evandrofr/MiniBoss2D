@@ -37,17 +37,28 @@ public class Enemy_Behav : MonoBehaviour{
     [SerializeField]
     int attackDamage = 40;
 
+    public health_bar_behav health_Bar;
+
+    public AudioClip attackSFX;
+
+    float SpaceBetween = 1.5f;
+
+    GameObject[] Other_Enemies;
+
     // Start is called before the first frame update
     void Start(){
         currentHealth = maxHealth; 
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         drop = GetComponent<drop_behav>();
+        health_Bar.SetMaxHealth(currentHealth);
 
     }
 
     // Update is called once per frame
     void Update(){
+        
+        Other_Enemies = GameObject.FindGameObjectsWithTag("melee enemy");
 
         float distance = Vector3.Distance(target.position, center.position);
 
@@ -70,37 +81,54 @@ public class Enemy_Behav : MonoBehaviour{
         if(mv) Move_to_Player();
     }
 
-    void Move_to_Player(){
+    void Move_to_Player() {
         anim.SetBool("mv", true);
+        avoid_other_enemies();
         rb.velocity = (Vector2) (target.position - center.position).normalized * mvSpeed;
 
         if (rb.velocity.x < -0.2f) transform.eulerAngles = new Vector3(0f, 180f, 0f);
         if (rb.velocity.x > 0.2f) transform.eulerAngles = new Vector3(0f, 0f, 0f);
     }
 
+    void avoid_other_enemies() {
+        foreach (GameObject obj in Other_Enemies)
+        {
+            if (obj != gameObject && obj != null)
+            {
+                float distance_to_enemy = Vector3.Distance(obj.transform.position, center.position);
+                
+                if (distance_to_enemy <= SpaceBetween)
+                {
+                    Vector3 direction = center.position - obj.transform.position;
+                    transform.Translate(direction * Time.deltaTime * mvSpeed);
+                }
+            }
+        }
+    }
+
     IEnumerator Attack(){
         atking = true;
         rb.velocity = Vector2.zero;
         anim.SetTrigger("atk");
+        AudioManager.PlaySFX(attackSFX);
         atking = false;
+        yield return new WaitForSeconds(waitTime);
 
-        yield return new WaitForSeconds(waitTime/2);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(center.position, MeleeRadius, PlayerLayer);
 
         foreach (Collider2D enemy in hitEnemies){
 
-            Debug.Log("Hit " + enemy.name);
             if (enemy.tag == "Player"){ 
                 enemy.GetComponent<Player_controller>().TakeDamage(attackDamage);
             }
         
         }
-        yield return new WaitForSeconds(waitTime/2);
     }
 
     public void TakeDamage(int dmg){
         anim.SetTrigger("dmg");
         currentHealth -= dmg;
+        health_Bar.SetHealth(currentHealth);
         if(currentHealth <= 0){
             Die();
         }

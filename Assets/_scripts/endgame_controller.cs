@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class endgame_controller : MonoBehaviour
 {
-
+    GameObject[] melee_enemies;
     // Update is called once per frame
     void Update()
     {
-        GameObject[] melee_enemies = GameObject.FindGameObjectsWithTag("melee enemy");
+        melee_enemies = GameObject.FindGameObjectsWithTag("melee enemy");
 
-        if (melee_enemies.Length == 0) SceneManager.LoadScene("win");
+        if (melee_enemies.Length == 0) {
+            
+            if (SceneManager.GetActiveScene().buildIndex == 1) SceneManager.LoadScene("win");
+            else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        }
 
     }
 }

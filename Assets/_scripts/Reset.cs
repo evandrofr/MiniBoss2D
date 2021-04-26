@@ -6,8 +6,13 @@ using UnityEngine;
 public class Reset : MonoBehaviour
 {
        // Update is called once per frame
-    void Update()
-    {
+    private void Start() {
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindGameObjectWithTag("audio"));
+    }
+
+    void Update() {
+
         if(Input.GetKeyDown(KeyCode.Escape)) SceneManager.LoadScene("SampleScene");
     }
 }

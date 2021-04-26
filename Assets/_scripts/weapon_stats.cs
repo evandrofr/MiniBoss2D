@@ -8,5 +8,7 @@ public class weapon_stats : MonoBehaviour
     public float attackRate = 2.5f;
 
     public Sprite sprite;
+
+    public AudioClip attackSFX;
     
 }

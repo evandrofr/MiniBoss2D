@@ -7,16 +7,19 @@ public class pause_controller : MonoBehaviour
 
     [SerializeField] GameObject pauseScreen;
     bool pause = false;
+    public bool inGame = false;
 
     // Start is called before the first frame update
     void Start()
     {
         pauseScreen.SetActive(false);
+    
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!inGame) return;
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             pause = !pause;
@@ -34,5 +37,7 @@ public class pause_controller : MonoBehaviour
 
     public void Retornar(){
         pause = false;
+        Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
     }
 }

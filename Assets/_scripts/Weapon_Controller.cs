@@ -19,6 +19,8 @@ public class Weapon_Controller : MonoBehaviour{
     private float lastAttackTimestamp = 0.0f;
 
     public LayerMask enemyLayers;
+    public AudioClip attackSFX;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -42,11 +44,11 @@ public class Weapon_Controller : MonoBehaviour{
         lastAttackTimestamp = Time.time;
 
         anim.SetTrigger("atk");
+        AudioManager.PlaySFX(attackSFX);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies){
-            Debug.Log("Hit " + enemy.name);
 
             if (enemy.tag == "melee enemy"){ 
                 enemy.GetComponent<Enemy_Behav>().TakeDamage(weaponDamege);

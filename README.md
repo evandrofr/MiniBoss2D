@@ -18,22 +18,21 @@ Um cavaleiro mediaval muito valente que tem por objetivo destruir todos os monst
 
 ## Descrição da mecânica (Core Mechanics / System design)
 
-O cavaleiro tem por objetivo matar todos os monstros da sala. A cada monstro morto o cavaleiro ganha pontos de experiência para ficar cada vez mais forte. Alguns monstros ao serem mortos derrubam no chão uma nova arma para o cavaleiro.
+O cavaleiro tem por objetivo matar todos os monstros da sala. Os monstros ao serem mortos derrubam no chão uma variedade de armas para o cavaleiro empunhar.
 
 
 ## Características (Mundo do jogo)
 
-Jogo consiste em matar muitos monstros para ficar cada vez mais forte e conseguir matar monstros cada vez mais fortes.
-
+ Jogo visto de cima para baixo no estilo dungeon crawl de ação e aventura que usa sprites bidimensionais.
 
 ## Arte
 
-Jogo em mundo 2D com mapa criado utilizando Tiles, assim desenvolvido pois será gerado proceduralmente no futuro.
-
+Jogo em mundo 2D com mapa criado utilizando Tiles.
 
 ## Música/Trilha Sonora
 
-Ainda sem efeitos sonoros no jogo.
+- https://mixkit.co/free-sound-effects/medieval-battle/
+- https://mixkit.co/free-sound-effects/sword/
 
 ## Interface
 
@@ -47,18 +46,21 @@ Direcionais do teclado para movimentação do personagem e barra de espaço para
 
 ## Dificuldade
 
-As dificuldades são a grande quantidade de monstros e sua força que cresce a casa sala. O usuário terá que matar muitos monstros para evoluir e conseguir novas armar se quiser conseguir derrotar os monstros mais fortes.
+As dificuldades são a grande quantidade de monstros e sua força que cresce a casa sala. O usuário terá que pensar em uma estratégia para não ser cercado pelos monstros e conseguir derrota-los.
 
 
 ## Fluxo do jogo
 
-O cavaleiro derrota dos os monstro de uma sala e parte para a seguinte.
+O cavaleiro derrota os monstro de uma sala e parte para a seguinte.
 
 
 ## Personagens
 
-Cavaleiro da espada de madeira muito badass e monstros variados que ele derrota.
-
+- Cavaleiro medieval da espada de madeira: nosso heroi;
+- Caveira guerreira: utiliza um enorme machado, se move lentamente e seu ataques machucam muito.
+- Cogumelo assassino: muito lento, mas muito resistente. Muito dificil de derrotar;
+- Goblin: pequeno e muito veloz. Muito dificil de se livrar deles.
+- Olho voador: consegue te perceber de longe e está sempre atrás de você!
 
 ## Cronograma e Escopo
 
@@ -74,7 +76,7 @@ Próximo passo: Construção de salas de forma procedural;
     - Web.
 
 - Público alvo:
-    - Pessoas de todas as idades.
+    - Jovens que gostam de jogos de fantasia.
 
 - Puzzles:
-    -Não sei.
+    - Não sei.

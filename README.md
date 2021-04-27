@@ -4,12 +4,8 @@ Jogo no estilo rogue-like RPG.
 
 
 ## Log de Alterações
-
-| Autor | Descrição da Alteração | Data da alteração |
-|:-----:|:----------------------:|:-----------------:|
-|   -   |         -              |        -          |
-|   -   |         -              |        -          |
-|   -   |         -              |        -          |
+Plataforma "Notion" foi utilizada para gerenciar o projeto. Todas as alterações e suas descrições se encontram na plataforma.
+<img src="Images/notion.png">
 
 ## Identidade do jogo (Conceito)
 
@@ -27,7 +23,19 @@ O cavaleiro tem por objetivo matar todos os monstros da sala. Os monstros ao ser
 
 ## Arte
 
-Jogo em mundo 2D com mapa criado utilizando Tiles.
+Jogo em mundo 2D com mapa criado utilizando Tiles e pixelarts de personagens.<br>
+### Personagens:
+<img src="Assets\Sprites\player\knight_idle_spritesheet.png"><br>
+<img src="Assets\Sprites\Skeleton\Skeleton Idle.png"><br>
+<img src="Assets\Sprites\Mushroom\Idle.png"><br>
+<img src="Assets\Sprites\Goblin\goblin_idle_spritesheet.png"><br>
+<img src="Assets\Sprites\Fly_eye\flight.png"><br>
+
+### Tiles:
+<img src="Assets\Tiles\full_tilemap.png"><br>
+
+
+
 
 ## Música/Trilha Sonora
 
@@ -36,12 +44,14 @@ Jogo em mundo 2D com mapa criado utilizando Tiles.
 
 ## Interface
 
-Interface simples. Apenas possui alguns paineis para iniciar, pausar e game over.
+Interface simples. Apenas possui alguns paineis para iniciar, pausar e game over.<br>
+Além disso é possível ver o "health bar" do personagem e dos monstros em tela.
 
 
 ## Controles
 
-Direcionais do teclado para movimentação do personagem e barra de espaço para atacar.
+- Movimento: Direcionais do teclado;
+- Ataque: barra de espaço.
 
 
 ## Dificuldade
@@ -60,10 +70,15 @@ Fluxo de telas:
 ## Personagens
 
 - Cavaleiro medieval da espada de madeira: nosso heroi;
+<img src="Assets\Sprites\player\knight_idle_spritesheet.png"><br>
 - Caveira guerreira: utiliza um enorme machado, se move lentamente e seu ataques machucam muito.
+<img src="Assets\Sprites\Skeleton\Skeleton Idle.png"><br>
 - Cogumelo assassino: muito lento, mas muito resistente. Muito dificil de derrotar;
+<img src="Assets\Sprites\Mushroom\Idle.png"><br>
 - Goblin: pequeno e muito veloz. Muito dificil de se livrar deles.
+<img src="Assets\Sprites\Goblin\goblin_idle_spritesheet.png"><br>
 - Olho voador: consegue te perceber de longe e está sempre atrás de você!
+<img src="Assets\Sprites\Fly_eye\flight.png"><br>
 
 ## Cronograma e Escopo
 

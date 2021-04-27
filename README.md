@@ -51,7 +51,10 @@ As dificuldades são a grande quantidade de monstros e sua força que cresce a c
 
 ## Fluxo do jogo
 
-O cavaleiro derrota os monstro de uma sala e parte para a seguinte.
+O cavaleiro derrota os monstro de uma sala e parte para a seguinte.<br>
+Fluxo de telas:
+
+<img src="Images/flow_miniboss.png">
 
 
 ## Personagens
@@ -77,6 +80,3 @@ Próximo passo: Construção de salas de forma procedural;
 
 - Público alvo:
     - Jovens que gostam de jogos de fantasia.
-
-- Puzzles:
-    - Não sei.
